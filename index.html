@@ -3,16 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>11 Months ❤️</title>
+<title>11 months ❤️</title>
 
 <style>
 * {
   box-sizing: border-box;
-  margin: 0;
-  padding: 0;
 }
 
 html, body {
+  margin: 0;
   width: 100%;
   height: 100%;
   overflow: hidden;
@@ -20,443 +19,496 @@ html, body {
 
 body {
   font-family: Georgia, "Times New Roman", serif;
-  background: #24131d;
-  color: #fff7fa;
+  background: #f8dfe7;
+  color: #633947;
 }
 
-#app {
-  width: 100vw;
-  height: 100vh;
-  position: relative;
-  overflow: hidden;
-}
-
-/* --------------------
+/* =========================
    SCENES
--------------------- */
+========================= */
 
 .scene {
-  position: absolute;
+  position: fixed;
   inset: 0;
   width: 100%;
   height: 100%;
-  overflow: hidden;
-
-  display: flex;
+  display: none;
   align-items: center;
   justify-content: center;
-
-  padding: 40px 22px;
-
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
-
-  transform: scale(1.025);
-
-  transition:
-    opacity 0.65s ease,
-    transform 0.65s ease,
-    visibility 0.65s ease;
+  padding: 25px;
+  overflow-y: auto;
 }
 
 .scene.active {
-  opacity: 1;
-  visibility: visible;
-  pointer-events: auto;
-  transform: scale(1);
+  display: flex;
+  animation: sceneIn .7s ease both;
 }
 
-.scene.exit {
-  opacity: 0;
-  transform: scale(0.97);
-}
-
-/* backgrounds */
-
-.scene1 {
+.scene.dark {
   background:
-    radial-gradient(circle at center, #703a58 0%, #3b1c2b 42%, #1e1018 100%);
+    radial-gradient(circle at center, #351927 0%, #170d13 55%, #0d080b 100%);
+  color: white;
 }
 
-.scene2 {
+.scene.pink {
   background:
-    radial-gradient(circle at 50% 30%, #8f526f, #4d263b 55%, #29151f);
+    radial-gradient(circle at 20% 20%, #fff4f7 0%, transparent 30%),
+    linear-gradient(135deg, #f9e3e9, #f2cbd7);
 }
 
-.scene3,
-.scene4 {
+.scene.rose {
   background:
-    linear-gradient(145deg, #f5d5df, #e9b9cb);
-  color: #482633;
+    radial-gradient(circle at center, #fff0f4, #efc0ce 70%);
 }
 
-.scene5 {
+.scene.future {
   background:
-    radial-gradient(circle at center, #fff0f4 0%, #edc2d1 55%, #c889a4 100%);
-  color: #482633;
+    linear-gradient(135deg, #f7e3d9, #f6cbd9);
 }
 
-.scene6 {
+.scene.memories {
   background:
-    linear-gradient(145deg, #f9dfe8, #edbdcf);
-  color: #482633;
+    linear-gradient(135deg, #f8e5eb, #efd0dc);
 }
 
-.scene7 {
+.scene.final {
   background:
-    radial-gradient(circle at center, #fff4f7, #edc3d1);
-  color: #482633;
+    radial-gradient(circle at center, #fff0f4, #edc2d0 70%);
 }
 
-.scene8 {
-  background:
-    radial-gradient(circle at center, #6e3453, #3b1c2b 55%, #1e1018);
+@keyframes sceneIn {
+  from {
+    opacity: 0;
+    transform: scale(.96);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
-
-/* --------------------
-   CONTENT
--------------------- */
 
 .content {
-  width: min(900px, 100%);
-  max-height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  width: min(900px, 94vw);
+  max-height: 92vh;
   text-align: center;
-  position: relative;
-  z-index: 5;
 }
 
 h1 {
-  font-size: clamp(38px, 7vw, 76px);
-  line-height: 1.05;
-  margin-bottom: 25px;
-  font-weight: 600;
+  font-size: clamp(2.4rem, 8vw, 5.5rem);
+  line-height: 1;
+  margin: 12px 0 20px;
 }
 
 h2 {
-  font-size: clamp(29px, 5vw, 52px);
-  line-height: 1.1;
-  margin-bottom: 24px;
+  font-size: clamp(2rem, 6vw, 4rem);
+  margin: 0 0 20px;
 }
 
 p {
-  font-size: clamp(17px, 2vw, 21px);
-  line-height: 1.75;
-  max-width: 760px;
+  font-size: clamp(1rem, 2.3vw, 1.25rem);
+  line-height: 1.7;
 }
 
-.small {
-  font-size: 16px;
-  opacity: 0.8;
+button {
+  font-family: inherit;
+  cursor: pointer;
 }
 
-/* --------------------
+/* =========================
    HEART
--------------------- */
+========================= */
+
+.heart-wrap {
+  width: 120px;
+  height: 120px;
+  margin: 0 auto 30px;
+  position: relative;
+  animation: heartFloat 3s ease-in-out infinite;
+}
 
 .heart {
-  width: 105px;
-  height: 105px;
-  background: #ff7fae;
+  width: 75px;
+  height: 75px;
+  position: absolute;
+  left: 22px;
+  top: 25px;
+  background: #f06d91;
   transform: rotate(-45deg);
-  position: relative;
-  margin-bottom: 55px;
-
+  border-radius: 10px;
   box-shadow:
-    0 0 20px #ff7fae,
-    0 0 55px rgba(255, 127, 174, .75),
-    0 0 100px rgba(255, 127, 174, .35);
-
-  animation: heartbeat 2s infinite ease-in-out;
+    0 0 20px #f06d91,
+    0 0 50px rgba(240,109,145,.55);
+  animation: heartbeat 1.35s infinite;
 }
 
 .heart::before,
 .heart::after {
   content: "";
   position: absolute;
-  width: 105px;
-  height: 105px;
-  background: #ff7fae;
+  width: 75px;
+  height: 75px;
   border-radius: 50%;
+  background: #f06d91;
 }
 
 .heart::before {
-  top: -52px;
+  top: -37px;
   left: 0;
 }
 
 .heart::after {
-  left: 52px;
   top: 0;
+  left: 37px;
 }
 
 @keyframes heartbeat {
-  0%, 100% {
+  0%,100% {
     transform: rotate(-45deg) scale(1);
   }
 
-  50% {
-    transform: rotate(-45deg) scale(1.08);
+  15% {
+    transform: rotate(-45deg) scale(1.16);
+  }
+
+  30% {
+    transform: rotate(-45deg) scale(1);
+  }
+
+  45% {
+    transform: rotate(-45deg) scale(1.10);
+  }
+
+  60% {
+    transform: rotate(-45deg) scale(1);
   }
 }
 
-/* --------------------
-   BUTTON
--------------------- */
-
-button {
-  border: none;
-  padding: 14px 28px;
-  border-radius: 999px;
-
-  background: rgba(255,255,255,.85);
-  color: #633047;
-
-  font-size: 16px;
-  font-weight: 600;
-
-  cursor: pointer;
-
-  margin-top: 30px;
-
-  box-shadow: 0 8px 25px rgba(70,20,45,.15);
-
-  transition:
-    transform .2s ease,
-    box-shadow .2s ease,
-    background .2s ease;
-}
-
-button:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 12px 30px rgba(70,20,45,.25);
-  background: white;
-}
-
-button:active {
-  transform: scale(.96);
-}
-
-/* --------------------
-   LETTER
--------------------- */
-
-.letter {
-  background: rgba(255,255,255,.55);
-  border: 1px solid rgba(255,255,255,.7);
-
-  border-radius: 24px;
-
-  padding: clamp(25px, 5vw, 50px);
-
-  width: min(800px, 100%);
-
-  box-shadow:
-    0 20px 60px rgba(75,30,50,.15);
-
-  backdrop-filter: blur(8px);
-}
-
-.letter p {
-  text-align: left;
-}
-
-/* --------------------
-   CENTER PHRASE
--------------------- */
-
-.big-line {
-  font-size: clamp(35px, 7vw, 75px);
-  font-weight: bold;
-  line-height: 1.05;
-
-  color: #9d4169;
-
-  margin: 25px 0;
-}
-
-/* --------------------
-   ROSE
--------------------- */
-
-.rose {
-  font-size: 80px;
-  margin-bottom: 25px;
-
-  animation:
-    roseFloat 3s ease-in-out infinite;
-}
-
-@keyframes roseFloat {
+@keyframes heartFloat {
   0%,100% {
     transform: translateY(0);
   }
 
   50% {
-    transform: translateY(-10px);
+    transform: translateY(-8px);
   }
 }
 
-/* --------------------
-   MEMORY CARDS
--------------------- */
+/* =========================
+   BUTTON
+========================= */
 
-.memories {
-  width: min(850px, 100%);
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 15px;
-
-  max-height: 62vh;
+.next {
+  border: none;
+  border-radius: 999px;
+  padding: 14px 27px;
+  margin-top: 25px;
+  background: #a94768;
+  color: white;
+  font-size: 1rem;
+  box-shadow: 0 10px 25px rgba(120,50,75,.2);
+  transition: .2s;
 }
 
-.memory {
-  background: rgba(255,255,255,.65);
-  border-radius: 18px;
-  padding: 18px;
+.next:hover {
+  transform: translateY(-3px) scale(1.03);
+}
 
+/* =========================
+   INTRO
+========================= */
+
+.intro-text {
+  max-width: 650px;
+  margin: auto;
+  opacity: 0;
+  animation: appear .9s ease 1.2s forwards;
+}
+
+.intro-text p {
+  margin: 10px 0;
+}
+
+@keyframes appear {
+  to {
+    opacity: 1;
+  }
+}
+
+/* =========================
+   LETTER
+========================= */
+
+.letter {
+  background: #fffaf5;
+  border-radius: 25px;
+  padding: clamp(22px, 4vw, 45px);
+  box-shadow: 0 20px 60px rgba(90,40,55,.15);
   text-align: left;
-
-  box-shadow: 0 10px 25px rgba(80,30,50,.12);
-
-  transition: transform .25s ease;
+  max-height: 78vh;
+  overflow-y: auto;
+  animation: letterOpen .8s ease both;
 }
 
-.memory:hover {
-  transform: translateY(-4px);
+@keyframes letterOpen {
+  from {
+    opacity: 0;
+    transform: translateY(35px) scale(.96);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }
 
-.memory strong {
-  display: block;
-  font-size: 18px;
-  margin-bottom: 7px;
+.letter h2 {
+  text-align: center;
 }
 
-.memory span {
-  display: block;
-  font-size: 15px;
-  line-height: 1.45;
+.letter p {
+  margin: 17px 0;
 }
 
-/* --------------------
-   DECORATIVE SPARKLES
--------------------- */
+/* =========================
+   ROSE
+========================= */
 
-.sparkles {
+.rose-area {
+  height: 300px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.rose {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  animation: roseFloat 3s ease-in-out infinite;
+}
+
+.rose-petal {
+  position: absolute;
+  width: 70px;
+  height: 90px;
+  background: #d94f72;
+  border-radius: 70% 30% 70% 30%;
+  left: 25px;
+  top: 15px;
+  transform-origin: bottom center;
+  box-shadow: 0 5px 15px rgba(100,30,50,.18);
+}
+
+.p1 { transform: rotate(0deg); }
+.p2 { transform: rotate(60deg); }
+.p3 { transform: rotate(120deg); }
+.p4 { transform: rotate(180deg); }
+.p5 { transform: rotate(240deg); }
+.p6 { transform: rotate(300deg); }
+
+.rose-center {
+  position: absolute;
+  width: 45px;
+  height: 45px;
+  background: #b9365a;
+  border-radius: 50%;
+  left: 38px;
+  top: 38px;
+  z-index: 5;
+}
+
+.rose.open .p1 { transform: rotate(-25deg) translateY(-25px) scale(.9); }
+.rose.open .p2 { transform: rotate(35deg) translateY(-25px) scale(.9); }
+.rose.open .p3 { transform: rotate(95deg) translateY(-25px) scale(.9); }
+.rose.open .p4 { transform: rotate(155deg) translateY(-25px) scale(.9); }
+.rose.open .p5 { transform: rotate(215deg) translateY(-25px) scale(.9); }
+.rose.open .p6 { transform: rotate(275deg) translateY(-25px) scale(.9); }
+
+.rose-petal {
+  transition: transform 1s cubic-bezier(.2,.8,.2,1);
+}
+
+@keyframes roseFloat {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+.rose-message {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: .7s ease;
+}
+
+.rose-message.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* =========================
+   BIG QUOTE
+========================= */
+
+.quote-scene {
+  position: relative;
+}
+
+.quote-heart {
+  font-size: 5rem;
+  animation: pulse 1.5s infinite;
+}
+
+.big-quote {
+  font-size: clamp(2.5rem, 8vw, 5.5rem);
+  font-weight: bold;
+  margin: 20px auto;
+  max-width: 800px;
+  line-height: 1.05;
+}
+
+.quote-sub {
+  max-width: 600px;
+  margin: auto;
+}
+
+@keyframes pulse {
+  50% { transform: scale(1.12); }
+}
+
+/* =========================
+   FUTURE
+========================= */
+
+.future-card {
+  background: rgba(255,250,247,.85);
+  border-radius: 28px;
+  padding: clamp(25px, 5vw, 50px);
+  box-shadow: 0 20px 55px rgba(100,50,65,.15);
+  text-align: left;
+  max-height: 78vh;
+  overflow-y: auto;
+}
+
+.future-card h2 {
+  text-align: center;
+}
+
+/* =========================
+   MEMORIES
+========================= */
+
+.memory-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0,1fr));
+  gap: 18px;
+  margin-top: 25px;
+}
+
+.memory-card {
+  min-height: 180px;
+  perspective: 900px;
+  cursor: pointer;
+}
+
+.memory-inner {
+  width: 100%;
+  height: 100%;
+  min-height: 180px;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform .75s cubic-bezier(.2,.8,.2,1);
+}
+
+.memory-card.open .memory-inner {
+  transform: rotateY(180deg);
+}
+
+.memory-front,
+.memory-back {
   position: absolute;
   inset: 0;
-  pointer-events: none;
-  overflow: hidden;
+  backface-visibility: hidden;
+  border-radius: 22px;
+  padding: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  box-shadow: 0 15px 35px rgba(100,50,65,.14);
 }
 
-.sparkle {
-  position: absolute;
-  width: 4px;
-  height: 4px;
-  border-radius: 50%;
-  background: rgba(255,255,255,.8);
-
-  animation: sparkle 3s infinite ease-in-out;
+.memory-front {
+  background: #fffaf7;
+  flex-direction: column;
 }
 
-.sparkle:nth-child(1) {
-  left: 12%;
-  top: 20%;
+.memory-front .emoji {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
 }
 
-.sparkle:nth-child(2) {
-  left: 80%;
-  top: 25%;
-  animation-delay: .7s;
+.memory-front h3 {
+  margin: 0;
+  font-size: 1.25rem;
 }
 
-.sparkle:nth-child(3) {
-  left: 25%;
-  top: 75%;
-  animation-delay: 1.2s;
+.memory-back {
+  background: #a94768;
+  color: white;
+  transform: rotateY(180deg);
+  line-height: 1.55;
 }
 
-.sparkle:nth-child(4) {
-  left: 88%;
-  top: 72%;
-  animation-delay: 1.8s;
+.memory-back p {
+  font-size: 1rem;
 }
 
-.sparkle:nth-child(5) {
-  left: 50%;
-  top: 12%;
-  animation-delay: 2.2s;
+/* =========================
+   FINAL
+========================= */
+
+.final-heart {
+  margin-bottom: 45px;
 }
 
-@keyframes sparkle {
-  0%,100% {
-    opacity: .15;
-    transform: scale(.7);
+.final-text {
+  animation: finalRise 1s ease both;
+}
+
+@keyframes finalRise {
+  from {
+    opacity: 0;
+    transform: translateY(25px);
   }
 
-  50% {
+  to {
     opacity: 1;
-    transform: scale(1.5);
+    transform: translateY(0);
   }
 }
 
-/* --------------------
+/* =========================
    MOBILE
--------------------- */
+========================= */
 
-@media (max-width: 650px) {
-
+@media(max-width:650px) {
   .scene {
-    padding: 25px 16px;
+    padding: 18px;
   }
 
-  .heart {
-    width: 75px;
-    height: 75px;
-    margin-bottom: 45px;
-  }
-
-  .heart::before,
-  .heart::after {
-    width: 75px;
-    height: 75px;
-  }
-
-  .heart::before {
-    top: -37px;
-  }
-
-  .heart::after {
-    left: 37px;
-  }
-
-  .letter {
-    padding: 23px;
-    max-height: 75vh;
-    overflow: hidden;
-  }
-
-  .letter p {
-    font-size: 16px;
-    line-height: 1.55;
-  }
-
-  .memories {
+  .memory-grid {
     grid-template-columns: 1fr;
-    max-height: 68vh;
-    overflow: hidden;
+    gap: 12px;
   }
 
-  .memory {
-    padding: 13px;
+  .memory-card,
+  .memory-inner {
+    min-height: 145px;
   }
 
-  .memory span {
-    font-size: 14px;
+  .letter,
+  .future-card {
+    max-height: 76vh;
   }
 }
 </style>
@@ -464,372 +516,466 @@ button:active {
 
 <body>
 
-<div id="app">
+<!-- =========================
+     1. INTRO
+========================= -->
 
-<!-- ==================== SCENE 1 ==================== -->
-
-<section class="scene scene1 active" id="scene1">
-
-  <div class="sparkles">
-    <i class="sparkle"></i>
-    <i class="sparkle"></i>
-    <i class="sparkle"></i>
-    <i class="sparkle"></i>
-    <i class="sparkle"></i>
-  </div>
-
+<section class="scene dark active" id="scene1">
   <div class="content">
 
-    <div class="heart"></div>
+    <div class="heart-wrap">
+      <div class="heart"></div>
+    </div>
 
-    <h1>Hey, I made this for you.</h1>
+    <div class="intro-text">
+      <h1>Hey, I made this for you.</h1>
 
-    <button onclick="nextScene()">
-      Open it 💌
-    </button>
+      <p>
+        I know it hasn't been 1 year yet, but I wanted to celebrate these
+        11 months together.
+      </p>
+
+      <p>
+        These 11 months have been some of the happiest months of my life.
+        Since you came into my life, I feel like everything changed completely.
+      </p>
+
+      <p>And I wanted to write this for you...</p>
+
+      <button class="next" onclick="goTo(2)">Open it ❤️</button>
+    </div>
 
   </div>
-
 </section>
 
 
-<!-- ==================== SCENE 2 ==================== -->
+<!-- =========================
+     2. INTRODUCTION LETTER
+========================= -->
 
-<section class="scene scene2">
-
+<section class="scene pink" id="scene2">
   <div class="content">
 
     <div class="letter">
 
+      <h2>For you ❤️</h2>
+
       <p>
         Hey, I made this for you.
-        <br><br>
+      </p>
 
+      <p>
         I know it hasn't been 1 year yet, but I wanted to celebrate these 11 months together.
-        <br><br>
+      </p>
 
+      <p>
         These 11 months have been some of the happiest months of my life. Since you came into my life, I feel like everything changed completely.
-        <br><br>
+      </p>
 
+      <p>
         And I wanted to write this for you...
       </p>
 
     </div>
 
-    <button onclick="nextScene()">
-      Continue →
-    </button>
+    <button class="next" onclick="goTo(3)">Keep going ❤️</button>
 
   </div>
-
 </section>
 
 
-<!-- ==================== SCENE 3 ==================== -->
+<!-- =========================
+     3. ROSE
+========================= -->
 
-<section class="scene scene3">
-
+<section class="scene rose" id="scene3">
   <div class="content">
 
-    <div class="letter">
+    <div class="rose-area">
 
-      <p>
-        I love you. I love you more than you can think.
-        <br><br>
-
-        But there's something that's been bothering me deep inside.
-        <br><br>
-
-        Coming into this new school year, I found myself chasing and trying to change you into someone who would make me feel more loved. And I realize that I've done things like this before, like making you cry by pretending I wanted to break up because I thought I was making you stronger, or getting angry at you over stupid things that were never your fault.
-        <br><br>
-
-        I can't forgive myself for making you go through those things, and I really want to ask you to forgive me for making you stress over things you shouldn't have had to.
-        <br><br>
-
-        I want you to know that I have always loved you. Sometimes I'm just scared of losing you, and that fear makes me do stupid things that I don't actually want to do.
-      </p>
+      <div class="rose" id="rose">
+        <div class="rose-petal p1"></div>
+        <div class="rose-petal p2"></div>
+        <div class="rose-petal p3"></div>
+        <div class="rose-petal p4"></div>
+        <div class="rose-petal p5"></div>
+        <div class="rose-petal p6"></div>
+        <div class="rose-center"></div>
+      </div>
 
     </div>
 
-    <button onclick="nextScene()">
-      Continue →
-    </button>
+    <div class="rose-message" id="roseMessage">
+      <h2>There's something I want to tell you.</h2>
+      <button class="next" onclick="goTo(4)">Open this ❤️</button>
+    </div>
 
   </div>
-
 </section>
 
 
-<!-- ==================== SCENE 4 ==================== -->
+<!-- =========================
+     4. APOLOGY
+========================= -->
 
-<section class="scene scene4">
-
+<section class="scene pink" id="scene4">
   <div class="content">
 
     <div class="letter">
+
+      <h2>I love you.</h2>
+
+      <p>
+        I love you. I love you more than you can think.
+      </p>
+
+      <p>
+        But there's something that's been bothering me deep inside.
+      </p>
+
+      <p>
+        Coming into this new school year, I found myself chasing and trying to change you into someone who would make me feel more loved. And I realize that I've done things like this before, like making you cry by pretending I wanted to break up because I thought I was making you stronger, or getting angry at you over stupid things that were never your fault.
+      </p>
+
+      <p>
+        I can't forgive myself for making you go through those things, and I really want to ask you to forgive me for making you stress over things you shouldn't have had to.
+      </p>
+
+      <p>
+        I want you to know that I have always loved you. Sometimes I'm just scared of losing you, and that fear makes me do stupid things that I don't actually want to do.
+      </p>
 
       <p>
         Sometimes I try to find ways to make sure you still love me, even though I already know how much you love me.
       </p>
 
-      <div class="big-line">
-        I just want you to be you.
-      </div>
-
-      <p>
-        I love who you were, who you are now, and whoever you're going to become. I love every version of you, no matter what happens.
-        <br><br>
-
-        I'm trying to change myself so I don't hurt you anymore.
-      </p>
-
     </div>
 
-    <button onclick="nextScene()">
-      Continue →
-    </button>
+    <button class="next" onclick="goTo(5)">There's something else ❤️</button>
 
   </div>
-
 </section>
 
 
-<!-- ==================== SCENE 5 ==================== -->
+<!-- =========================
+     5. BE YOU
+========================= -->
 
-<section class="scene scene5">
-
+<section class="scene quote-scene dark" id="scene5">
   <div class="content">
 
-    <div class="rose">
-      🌹
+    <div class="quote-heart">❤️</div>
+
+    <div class="big-quote">
+      I just want you to be you.
     </div>
+
+    <p class="quote-sub">
+      I love who you were, who you are now, and whoever you're going to become.
+      I love every version of you, no matter what happens.
+    </p>
+
+    <p class="quote-sub">
+      I'm trying to change myself so I don't hurt you anymore.
+    </p>
+
+    <button class="next" onclick="goTo(6)">Keep going ❤️</button>
+
+  </div>
+</section>
+
+
+<!-- =========================
+     6. APOLOGY CONTINUED
+========================= -->
+
+<section class="scene pink" id="scene6">
+  <div class="content">
 
     <div class="letter">
 
       <p>
         I also want you to know that you can tell me things. I want to be your diary, someone you can count on when you feel like you don't have anyone.
-        <br><br>
+      </p>
 
+      <p>
         I might be overthinking this and maybe you already feel comfortable telling me everything. But whether it's just me overthinking or there's actually something there, I want you to know that I'm here, and I'll always be here for you.
-        <br><br>
+      </p>
 
+      <p>
         I love you, and I want this relationship to keep going without stopping. ❤️
       </p>
 
     </div>
 
-    <button onclick="nextScene()">
-      Continue →
-    </button>
+    <button class="next" onclick="goTo(7)">One more thing ❤️</button>
 
   </div>
-
 </section>
 
 
-<!-- ==================== SCENE 6 ==================== -->
+<!-- =========================
+     7. MEANING / FUTURE
+========================= -->
 
-<section class="scene scene6">
-
+<section class="scene future" id="scene7">
   <div class="content">
 
-    <div class="letter">
+    <div class="future-card">
 
       <h2>You don't imagine how much you mean to me.</h2>
 
       <p>
         The love I feel for you isn't like anything else. It's a kind of love that even I can't really explain.
-        <br><br>
+      </p>
 
+      <p>
         Every day I think about you. I wonder if you're okay, if you're thinking about me, and if I'm going to have you in my future, which is something I really want.
-        <br><br>
+      </p>
 
+      <p>
         If I had one wish right now, it would be to be with you forever.
-        <br><br>
+      </p>
 
-        You might say, "What about being rich or something else?" 😭
-        <br><br>
+      <p>
+        You might say, “What about being rich or something else?” 😭
+      </p>
 
+      <p>
         But honestly, God already made me rich by sending you into my life. I don't feel like I need anything else other than being able to have you in my life.
       </p>
 
-    </div>
-
-    <button onclick="nextScene()">
-      Continue →
-    </button>
-
-  </div>
-
-</section>
-
-
-<!-- ==================== SCENE 7 ==================== -->
-
-<section class="scene scene7">
-
-  <div class="content">
-
-    <div class="letter">
-
       <p>
         I know sometimes everything can feel overwhelming — school, your mom wanting you to marry someone with a residency, thinking about the future, and everything else.
-        <br><br>
+      </p>
 
+      <p>
         But I want you to slow down a little and let me be there with you through it.
-        <br><br>
+      </p>
 
+      <p>
         I want us to go through everything together. School, college, talking with your mom, whatever the future brings, and marriage too, if that's what we both want one day.
-        <br><br>
+      </p>
 
+      <p>
         I don't want you to overthink everything so much that you end up like me 😭.
-        <br><br>
+      </p>
 
+      <p>
         Just know that I'm here, and we'll figure things out together, one step at a time, guided by God. ❤️
       </p>
 
     </div>
 
-    <button onclick="nextScene()">
-      Continue →
-    </button>
+    <button class="next" onclick="goTo(8)">Our memories ❤️</button>
 
   </div>
-
 </section>
 
 
-<!-- ==================== SCENE 8 ==================== -->
+<!-- =========================
+     8. MEMORY CARDS
+========================= -->
 
-<section class="scene scene7">
-
+<section class="scene memories" id="scene8">
   <div class="content">
 
-    <h2>Some things I'll always remember... ❤️</h2>
+    <h2>This I will never forget ❤️</h2>
 
-    <p class="small">
-      I don't have a picture for every memory we have, but I remember them anyway.
-    </p>
+    <div class="memory-grid">
 
-    <br>
+      <div class="memory-card" onclick="toggleMemory(this)">
+        <div class="memory-inner">
 
-    <div class="memories">
+          <div class="memory-front">
+            <div class="emoji">💋</div>
+            <h3>Our first quiz</h3>
+          </div>
 
-      <div class="memory">
-        <strong>💋 The first time we kissed.</strong>
-        <span>I don't think I'll ever forget that moment.</span>
+          <div class="memory-back">
+            <p>
+              The way you hugged me and kissed me...
+            </p>
+          </div>
+
+        </div>
       </div>
 
-      <div class="memory">
-        <strong>😭 The first time we sat next to each other on the bus.</strong>
-        <span>We were both so awkward and didn't even know what to say to each other. 😂</span>
+
+      <div class="memory-card" onclick="toggleMemory(this)">
+        <div class="memory-inner">
+
+          <div class="memory-front">
+            <div class="emoji">🚌</div>
+            <h3>The bus</h3>
+          </div>
+
+          <div class="memory-back">
+            <p>
+              The time we sat by each other on the bus, not knowing what to say to each other.
+            </p>
+          </div>
+
+        </div>
       </div>
 
-      <div class="memory">
-        <strong>💀 The time you called me and told me you were pooping...</strong>
-        <span>And we had only been together for like 2 weeks 😭😭 I knew pretty early that you were comfortable with me. 😂</span>
+
+      <div class="memory-card" onclick="toggleMemory(this)">
+        <div class="memory-inner">
+
+          <div class="memory-front">
+            <div class="emoji">😭</div>
+            <h3>That phone call</h3>
+          </div>
+
+          <div class="memory-back">
+            <p>
+              The time we were on a call and you told me you were pooping, which was kinda weird 😭 but showed me how much confidence you have in me.
+            </p>
+          </div>
+
+        </div>
       </div>
 
-      <div class="memory">
-        <strong>🥺 The time I was sick.</strong>
-        <span>You kept asking about me and checking on me, and it really showed me how much you cared.</span>
-      </div>
 
-      <div class="memory">
-        <strong>❤️ The way you always care about me, even when I don't listen.</strong>
-        <span>Like when I try to do something stupid, such as skipping class just to be with you 😭 You don't let me do it because you actually care about me and want me to do good.</span>
+      <div class="memory-card" onclick="toggleMemory(this)">
+        <div class="memory-inner">
+
+          <div class="memory-front">
+            <div class="emoji">❤️</div>
+            <h3>The way you care</h3>
+          </div>
+
+          <div class="memory-back">
+            <p>
+              Always making sure I'm okay and I'm doing the right thing. For example, the times I tried to skip to stay with you but you don't let me.
+            </p>
+          </div>
+
+        </div>
       </div>
 
     </div>
 
-    <button onclick="nextScene()">
-      Continue →
-    </button>
+    <button class="next" onclick="goTo(9)">There's still more ❤️</button>
 
   </div>
-
 </section>
 
 
-<!-- ==================== FINAL ==================== -->
+<!-- =========================
+     9. END
+========================= -->
 
-<section class="scene scene8">
+<section class="scene final" id="scene9">
+  <div class="content final-text">
 
-  <div class="sparkles">
-    <i class="sparkle"></i>
-    <i class="sparkle"></i>
-    <i class="sparkle"></i>
-    <i class="sparkle"></i>
-    <i class="sparkle"></i>
-  </div>
+    <div class="heart-wrap final-heart">
+      <div class="heart"></div>
+    </div>
 
-  <div class="content">
-
-    <div class="heart"></div>
-
-    <h2>11 months.</h2>
+    <h1>11 months. ❤️</h1>
 
     <p>
       Thank you for being part of my life.
-      <br><br>
+    </p>
 
-      I'm sorry for the times I didn't handle things the way I should have.
-      <br><br>
+    <p>
+      I'm still learning. I'm still growing.
+    </p>
 
-      I'm still learning.
-      <br>
-      I'm still growing.
-      <br><br>
-
+    <p>
       But one thing I'm sure about is that I love you.
-      <br><br>
+    </p>
 
+    <p>
       Happy 11 months. ❤️
-      <br><br>
+    </p>
 
-      Here's to whatever comes next.
-      <br><br>
-
-      I love you. ❤️
-      <br><br>
-
-      — Woodson
+    <p>
+      I love you.
     </p>
 
   </div>
-
 </section>
-
-</div>
 
 
 <script>
 
+/*
+  IMPORTANT:
+  Only ONE scene exists on screen at a time.
+*/
+
 let currentScene = 1;
+let changing = false;
 
-const scenes = document.querySelectorAll(".scene");
+function goTo(number) {
 
-function nextScene() {
+  if (changing || number === currentScene) return;
 
-  if (currentScene >= scenes.length) {
-    return;
-  }
+  changing = true;
 
-  const oldScene = scenes[currentScene - 1];
-  const newScene = scenes[currentScene];
+  const oldScene = document.getElementById("scene" + currentScene);
+  const newScene = document.getElementById("scene" + number);
 
-  oldScene.classList.add("exit");
+  /*
+    Completely remove the old scene first.
+  */
+
+  oldScene.classList.remove("active");
 
   setTimeout(() => {
 
-    oldScene.classList.remove("active");
-    oldScene.classList.remove("exit");
+    /*
+      Reset any interactive elements inside the new scene.
+    */
 
     newScene.classList.add("active");
 
-    currentScene++;
+    currentScene = number;
+    changing = false;
 
-  }, 650);
+    /*
+      Special animation for the rose.
+    */
+
+    if (number === 3) {
+
+      const rose = document.getElementById("rose");
+      const message = document.getElementById("roseMessage");
+
+      rose.classList.remove("open");
+      message.classList.remove("show");
+
+      setTimeout(() => {
+        rose.classList.add("open");
+      }, 600);
+
+      setTimeout(() => {
+        message.classList.add("show");
+      }, 1500);
+    }
+
+  }, 450);
+}
+
+
+function toggleMemory(card) {
+
+  /*
+    Only one memory card opens at a time.
+  */
+
+  document.querySelectorAll(".memory-card").forEach(other => {
+
+    if (other !== card) {
+      other.classList.remove("open");
+    }
+
+  });
+
+  card.classList.toggle("open");
 }
 
 </script>
