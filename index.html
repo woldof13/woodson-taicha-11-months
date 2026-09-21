@@ -8,19 +8,20 @@
 <style>
 * {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 html, body {
-  margin: 0;
   width: 100%;
   height: 100%;
   overflow: hidden;
+  font-family: Georgia, "Times New Roman", serif;
 }
 
 body {
-  font-family: Georgia, "Times New Roman", serif;
-  background: #f8dfe7;
-  color: #633947;
+  background: #ffdce8;
+  color: #4d2935;
 }
 
 /* =========================
@@ -35,51 +36,19 @@ body {
   display: none;
   align-items: center;
   justify-content: center;
-  padding: 25px;
-  overflow-y: auto;
+  padding: 24px;
+  overflow: hidden;
 }
 
 .scene.active {
   display: flex;
-  animation: sceneIn .7s ease both;
-}
-
-.scene.dark {
-  background:
-    radial-gradient(circle at center, #351927 0%, #170d13 55%, #0d080b 100%);
-  color: white;
-}
-
-.scene.pink {
-  background:
-    radial-gradient(circle at 20% 20%, #fff4f7 0%, transparent 30%),
-    linear-gradient(135deg, #f9e3e9, #f2cbd7);
-}
-
-.scene.rose {
-  background:
-    radial-gradient(circle at center, #fff0f4, #efc0ce 70%);
-}
-
-.scene.future {
-  background:
-    linear-gradient(135deg, #f7e3d9, #f6cbd9);
-}
-
-.scene.memories {
-  background:
-    linear-gradient(135deg, #f8e5eb, #efd0dc);
-}
-
-.scene.final {
-  background:
-    radial-gradient(circle at center, #fff0f4, #edc2d0 70%);
+  animation: sceneIn 0.65s ease both;
 }
 
 @keyframes sceneIn {
   from {
     opacity: 0;
-    transform: scale(.96);
+    transform: scale(1.025);
   }
   to {
     opacity: 1;
@@ -87,336 +56,406 @@ body {
   }
 }
 
-.content {
-  width: min(900px, 94vw);
-  max-height: 92vh;
-  text-align: center;
+/* =========================
+   BACKGROUNDS
+========================= */
+
+.intro {
+  background:
+    radial-gradient(circle at 50% 45%, #4a2034 0%, #24131c 38%, #100b0f 100%);
+  color: white;
 }
 
-h1 {
-  font-size: clamp(2.4rem, 8vw, 5.5rem);
-  line-height: 1;
-  margin: 12px 0 20px;
+.soft {
+  background:
+    radial-gradient(circle at 50% 35%, #fff5f8 0%, #ffdce8 50%, #f7b8ce 100%);
 }
 
-h2 {
-  font-size: clamp(2rem, 6vw, 4rem);
-  margin: 0 0 20px;
+.rose-scene {
+  background:
+    radial-gradient(circle at 50% 45%, #fff1f5 0%, #ffd3e0 55%, #f4a9c3 100%);
 }
 
-p {
-  font-size: clamp(1rem, 2.3vw, 1.25rem);
-  line-height: 1.7;
+.letter-scene {
+  background:
+    radial-gradient(circle at 50% 40%, #fffaf4 0%, #ffe9ee 50%, #f6c1d1 100%);
 }
 
-button {
-  font-family: inherit;
-  cursor: pointer;
+.quote-scene {
+  background:
+    radial-gradient(circle at 50% 45%, #fff2f6 0%, #ffcddd 50%, #ee9fbb 100%);
+}
+
+.future-scene {
+  background:
+    radial-gradient(circle at 50% 35%, #fff8fb 0%, #f9d8e5 45%, #eeb4ca 100%);
+}
+
+.memory-scene {
+  background:
+    radial-gradient(circle at 50% 35%, #fff8fa 0%, #ffdfe9 50%, #f3b1c7 100%);
+}
+
+.end-scene {
+  background:
+    radial-gradient(circle at 50% 45%, #5a263e 0%, #321824 45%, #170c12 100%);
+  color: white;
 }
 
 /* =========================
-   HEART
+   GENERAL CONTENT
 ========================= */
 
-.heart-wrap {
-  width: 120px;
-  height: 120px;
-  margin: 0 auto 30px;
+.scene-content {
+  width: min(900px, 100%);
+  max-height: calc(100vh - 48px);
+  text-align: center;
   position: relative;
-  animation: heartFloat 3s ease-in-out infinite;
+  z-index: 3;
 }
 
+h1 {
+  font-size: clamp(2.3rem, 7vw, 5rem);
+  line-height: 1.05;
+  margin-bottom: 24px;
+}
+
+h2 {
+  font-size: clamp(2rem, 5vw, 3.8rem);
+  line-height: 1.1;
+  margin-bottom: 22px;
+}
+
+p {
+  font-family: Arial, sans-serif;
+  font-size: clamp(1rem, 2vw, 1.18rem);
+  line-height: 1.7;
+  margin: 0 auto 18px;
+  max-width: 760px;
+}
+
+.small {
+  font-size: 0.95rem;
+  opacity: 0.7;
+}
+
+button {
+  border: none;
+  padding: 14px 25px;
+  border-radius: 999px;
+  background: #fff;
+  color: #7b304d;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 18px;
+  box-shadow: 0 8px 25px rgba(70, 20, 40, 0.15);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 30px rgba(70, 20, 40, 0.2);
+}
+
+button:active {
+  transform: scale(0.96);
+}
+
+/* =========================
+   GLOWING HEART
+========================= */
+
 .heart {
-  width: 75px;
-  height: 75px;
-  position: absolute;
-  left: 22px;
-  top: 25px;
-  background: #f06d91;
+  width: 90px;
+  height: 90px;
+  position: relative;
+  margin: 0 auto 38px;
   transform: rotate(-45deg);
-  border-radius: 10px;
+  background: #ff527e;
+  border-radius: 15px;
+  animation: heartbeat 1.35s infinite ease-in-out;
   box-shadow:
-    0 0 20px #f06d91,
-    0 0 50px rgba(240,109,145,.55);
-  animation: heartbeat 1.35s infinite;
+    0 0 20px #ff527e,
+    0 0 50px rgba(255, 82, 126, 0.8),
+    0 0 100px rgba(255, 82, 126, 0.45);
 }
 
 .heart::before,
 .heart::after {
   content: "";
   position: absolute;
-  width: 75px;
-  height: 75px;
+  width: 90px;
+  height: 90px;
+  background: #ff527e;
   border-radius: 50%;
-  background: #f06d91;
 }
 
 .heart::before {
-  top: -37px;
+  top: -45px;
   left: 0;
 }
 
 .heart::after {
+  left: 45px;
   top: 0;
-  left: 37px;
 }
 
 @keyframes heartbeat {
-  0%,100% {
+  0%, 100% {
     transform: rotate(-45deg) scale(1);
   }
-
-  15% {
-    transform: rotate(-45deg) scale(1.16);
+  12% {
+    transform: rotate(-45deg) scale(1.13);
   }
-
-  30% {
+  25% {
     transform: rotate(-45deg) scale(1);
   }
-
-  45% {
-    transform: rotate(-45deg) scale(1.10);
+  37% {
+    transform: rotate(-45deg) scale(1.08);
   }
-
-  60% {
-    transform: rotate(-45deg) scale(1);
-  }
-}
-
-@keyframes heartFloat {
-  0%,100% {
-    transform: translateY(0);
-  }
-
   50% {
-    transform: translateY(-8px);
+    transform: rotate(-45deg) scale(1);
   }
 }
 
 /* =========================
-   BUTTON
+   FLOATING HEARTS
 ========================= */
 
-.next {
-  border: none;
-  border-radius: 999px;
-  padding: 14px 27px;
-  margin-top: 25px;
-  background: #a94768;
-  color: white;
-  font-size: 1rem;
-  box-shadow: 0 10px 25px rgba(120,50,75,.2);
-  transition: .2s;
+.floating-heart {
+  position: absolute;
+  color: rgba(255,255,255,0.5);
+  font-size: 20px;
+  animation: floatUp linear infinite;
+  pointer-events: none;
 }
 
-.next:hover {
-  transform: translateY(-3px) scale(1.03);
-}
-
-/* =========================
-   INTRO
-========================= */
-
-.intro-text {
-  max-width: 650px;
-  margin: auto;
-  opacity: 0;
-  animation: appear .9s ease 1.2s forwards;
-}
-
-.intro-text p {
-  margin: 10px 0;
-}
-
-@keyframes appear {
-  to {
-    opacity: 1;
-  }
-}
-
-/* =========================
-   LETTER
-========================= */
-
-.letter {
-  background: #fffaf5;
-  border-radius: 25px;
-  padding: clamp(22px, 4vw, 45px);
-  box-shadow: 0 20px 60px rgba(90,40,55,.15);
-  text-align: left;
-  max-height: 78vh;
-  overflow-y: auto;
-  animation: letterOpen .8s ease both;
-}
-
-@keyframes letterOpen {
+@keyframes floatUp {
   from {
+    transform: translateY(110vh) rotate(0deg);
     opacity: 0;
-    transform: translateY(35px) scale(.96);
   }
-
+  15% {
+    opacity: 0.7;
+  }
+  85% {
+    opacity: 0.7;
+  }
   to {
-    opacity: 1;
-    transform: translateY(0) scale(1);
+    transform: translateY(-15vh) rotate(30deg);
+    opacity: 0;
   }
-}
-
-.letter h2 {
-  text-align: center;
-}
-
-.letter p {
-  margin: 17px 0;
 }
 
 /* =========================
    ROSE
 ========================= */
 
-.rose-area {
-  height: 300px;
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
 .rose {
+  width: 150px;
+  height: 150px;
+  margin: 0 auto 30px;
   position: relative;
-  width: 120px;
-  height: 120px;
   animation: roseFloat 3s ease-in-out infinite;
 }
 
-.rose-petal {
-  position: absolute;
-  width: 70px;
-  height: 90px;
-  background: #d94f72;
-  border-radius: 70% 30% 70% 30%;
-  left: 25px;
-  top: 15px;
-  transform-origin: bottom center;
-  box-shadow: 0 5px 15px rgba(100,30,50,.18);
+@keyframes roseFloat {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
 }
 
-.p1 { transform: rotate(0deg); }
-.p2 { transform: rotate(60deg); }
-.p3 { transform: rotate(120deg); }
-.p4 { transform: rotate(180deg); }
-.p5 { transform: rotate(240deg); }
-.p6 { transform: rotate(300deg); }
+.petal {
+  position: absolute;
+  width: 72px;
+  height: 95px;
+  background: linear-gradient(145deg, #e84970, #a91f49);
+  border-radius: 70% 30% 70% 30%;
+  left: 39px;
+  top: 25px;
+  transform-origin: bottom center;
+  box-shadow: 0 5px 15px rgba(130, 25, 55, 0.2);
+}
+
+.petal:nth-child(1) {
+  transform: rotate(0deg) translateY(-10px);
+}
+
+.petal:nth-child(2) {
+  transform: rotate(60deg) translateY(-10px);
+}
+
+.petal:nth-child(3) {
+  transform: rotate(120deg) translateY(-10px);
+}
+
+.petal:nth-child(4) {
+  transform: rotate(180deg) translateY(-10px);
+}
+
+.petal:nth-child(5) {
+  transform: rotate(240deg) translateY(-10px);
+}
+
+.petal:nth-child(6) {
+  transform: rotate(300deg) translateY(-10px);
+}
 
 .rose-center {
   position: absolute;
-  width: 45px;
-  height: 45px;
-  background: #b9365a;
+  width: 55px;
+  height: 55px;
+  background: #b5234b;
   border-radius: 50%;
-  left: 38px;
-  top: 38px;
-  z-index: 5;
+  left: 48px;
+  top: 48px;
+  box-shadow: inset 0 0 12px rgba(80,0,20,0.25);
+  z-index: 4;
 }
 
-.rose.open .p1 { transform: rotate(-25deg) translateY(-25px) scale(.9); }
-.rose.open .p2 { transform: rotate(35deg) translateY(-25px) scale(.9); }
-.rose.open .p3 { transform: rotate(95deg) translateY(-25px) scale(.9); }
-.rose.open .p4 { transform: rotate(155deg) translateY(-25px) scale(.9); }
-.rose.open .p5 { transform: rotate(215deg) translateY(-25px) scale(.9); }
-.rose.open .p6 { transform: rotate(275deg) translateY(-25px) scale(.9); }
-
-.rose-petal {
-  transition: transform 1s cubic-bezier(.2,.8,.2,1);
+.stem {
+  position: absolute;
+  width: 8px;
+  height: 90px;
+  background: #3f8b55;
+  left: 72px;
+  top: 110px;
+  border-radius: 20px;
 }
 
-@keyframes roseFloat {
-  0%,100% { transform: translateY(0); }
-  50% { transform: translateY(-8px); }
-}
-
-.rose-message {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: .7s ease;
-}
-
-.rose-message.show {
-  opacity: 1;
-  transform: translateY(0);
+.leaf {
+  position: absolute;
+  width: 45px;
+  height: 22px;
+  background: #4e9c61;
+  border-radius: 100% 0;
+  left: 30px;
+  top: 145px;
+  transform: rotate(-25deg);
 }
 
 /* =========================
-   BIG QUOTE
+   LETTER
 ========================= */
 
-.quote-scene {
+.envelope {
+  width: min(600px, 90vw);
+  height: 300px;
+  margin: 0 auto 30px;
   position: relative;
+  cursor: pointer;
+  perspective: 900px;
 }
 
-.quote-heart {
-  font-size: 5rem;
-  animation: pulse 1.5s infinite;
+.envelope-back {
+  position: absolute;
+  inset: 0;
+  background: #f7b6c9;
+  border-radius: 12px;
+  box-shadow: 0 20px 50px rgba(80, 30, 50, 0.18);
 }
 
-.big-quote {
-  font-size: clamp(2.5rem, 8vw, 5.5rem);
-  font-weight: bold;
-  margin: 20px auto;
-  max-width: 800px;
-  line-height: 1.05;
+.envelope-flap {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 150px;
+  background: #ec8fac;
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+  transform-origin: top;
+  transition: transform 0.8s ease;
+  z-index: 4;
 }
 
-.quote-sub {
-  max-width: 600px;
-  margin: auto;
+.letter-paper {
+  position: absolute;
+  left: 5%;
+  width: 90%;
+  bottom: 10px;
+  height: 270px;
+  background: #fffaf5;
+  border-radius: 8px;
+  padding: 25px;
+  z-index: 2;
+  transition: transform 0.8s ease;
+  box-shadow: 0 5px 20px rgba(60,20,30,0.12);
 }
 
-@keyframes pulse {
-  50% { transform: scale(1.12); }
+.envelope.open .envelope-flap {
+  transform: rotateX(180deg);
+}
+
+.envelope.open .letter-paper {
+  transform: translateY(-110px);
 }
 
 /* =========================
-   FUTURE
+   TEXT CARDS
 ========================= */
 
-.future-card {
-  background: rgba(255,250,247,.85);
-  border-radius: 28px;
-  padding: clamp(25px, 5vw, 50px);
-  box-shadow: 0 20px 55px rgba(100,50,65,.15);
-  text-align: left;
-  max-height: 78vh;
+.text-card {
+  background: rgba(255,255,255,0.72);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255,255,255,0.8);
+  border-radius: 25px;
+  padding: 30px;
+  max-height: calc(100vh - 130px);
   overflow-y: auto;
+  box-shadow: 0 20px 50px rgba(90, 30, 55, 0.12);
+  text-align: left;
 }
 
-.future-card h2 {
+.text-card h2,
+.text-card .center {
   text-align: center;
 }
 
 /* =========================
-   MEMORIES
+   QUOTE
 ========================= */
 
-.memory-grid {
+.big-heart {
+  font-size: clamp(5rem, 16vw, 10rem);
+  display: block;
+  animation: softBeat 1.8s infinite ease-in-out;
+  margin-bottom: 25px;
+  filter: drop-shadow(0 10px 25px rgba(160,30,70,0.25));
+}
+
+@keyframes softBeat {
+  0%,100% { transform: scale(1); }
+  50% { transform: scale(1.12); }
+}
+
+/* =========================
+   MEMORY CARDS
+========================= */
+
+.memories {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0,1fr));
-  gap: 18px;
-  margin-top: 25px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 15px;
+  max-width: 780px;
+  margin: 25px auto 0;
 }
 
 .memory-card {
-  min-height: 180px;
+  height: 170px;
   perspective: 900px;
   cursor: pointer;
 }
 
 .memory-inner {
+  position: relative;
   width: 100%;
   height: 100%;
-  min-height: 180px;
-  position: relative;
+  transition: transform 0.65s ease;
   transform-style: preserve-3d;
-  transition: transform .75s cubic-bezier(.2,.8,.2,1);
 }
 
 .memory-card.open .memory-inner {
@@ -428,87 +467,103 @@ button {
   position: absolute;
   inset: 0;
   backface-visibility: hidden;
-  border-radius: 22px;
-  padding: 22px;
+  border-radius: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
-  text-align: center;
-  box-shadow: 0 15px 35px rgba(100,50,65,.14);
+  padding: 22px;
+  box-shadow: 0 12px 30px rgba(80,25,45,0.13);
 }
 
 .memory-front {
-  background: #fffaf7;
-  flex-direction: column;
-}
-
-.memory-front .emoji {
-  font-size: 2.5rem;
-  margin-bottom: 10px;
-}
-
-.memory-front h3 {
-  margin: 0;
-  font-size: 1.25rem;
+  background: rgba(255,255,255,0.85);
+  font-size: 1.2rem;
+  font-weight: bold;
 }
 
 .memory-back {
-  background: #a94768;
-  color: white;
+  background: #fff5f7;
   transform: rotateY(180deg);
+  font-family: Arial, sans-serif;
   line-height: 1.55;
-}
-
-.memory-back p {
-  font-size: 1rem;
+  font-size: 0.95rem;
 }
 
 /* =========================
-   FINAL
+   END
 ========================= */
 
-.final-heart {
-  margin-bottom: 45px;
+.end-heart {
+  font-size: 7rem;
+  animation: softBeat 1.5s infinite;
+  margin-bottom: 30px;
 }
 
-.final-text {
-  animation: finalRise 1s ease both;
-}
-
-@keyframes finalRise {
-  from {
-    opacity: 0;
-    transform: translateY(25px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.signature {
+  margin-top: 28px;
+  font-style: italic;
+  opacity: 0.75;
 }
 
 /* =========================
    MOBILE
 ========================= */
 
-@media(max-width:650px) {
+@media (max-width: 650px) {
   .scene {
     padding: 18px;
   }
 
-  .memory-grid {
+  .scene-content {
+    max-height: calc(100vh - 36px);
+  }
+
+  .heart {
+    width: 65px;
+    height: 65px;
+    margin-bottom: 30px;
+  }
+
+  .heart::before,
+  .heart::after {
+    width: 65px;
+    height: 65px;
+  }
+
+  .heart::before {
+    top: -32px;
+  }
+
+  .heart::after {
+    left: 32px;
+  }
+
+  .text-card {
+    padding: 22px;
+    max-height: calc(100vh - 95px);
+  }
+
+  p {
+    line-height: 1.55;
+  }
+
+  .memories {
     grid-template-columns: 1fr;
-    gap: 12px;
+    max-height: 60vh;
+    overflow-y: auto;
+    padding: 5px;
   }
 
-  .memory-card,
-  .memory-inner {
-    min-height: 145px;
+  .memory-card {
+    height: 145px;
   }
 
-  .letter,
-  .future-card {
-    max-height: 76vh;
+  .envelope {
+    height: 230px;
+  }
+
+  .letter-paper {
+    height: 205px;
   }
 }
 </style>
@@ -517,113 +572,129 @@ button {
 <body>
 
 <!-- =========================
-     1. INTRO
+     SCENE 1
 ========================= -->
 
-<section class="scene dark active" id="scene1">
-  <div class="content">
+<section class="scene intro active" id="scene1">
+  <div class="scene-content">
 
-    <div class="heart-wrap">
-      <div class="heart"></div>
-    </div>
+    <div class="heart"></div>
 
-    <div class="intro-text">
-      <h1>Hey, I made this for you.</h1>
+    <h1>Hey, I made this for you.</h1>
 
-      <p>
-        I know it hasn't been 1 year yet, but I wanted to celebrate these
-        11 months together.
-      </p>
+    <p>
+      I know it hasn't been 1 year yet,
+      but I wanted to make something for these 11 months.
+    </p>
 
-      <p>
-        These 11 months have been some of the happiest months of my life.
-        Since you came into my life, I feel like everything changed completely.
-      </p>
-
-      <p>And I wanted to write this for you...</p>
-
-      <button class="next" onclick="goTo(2)">Open it ❤️</button>
-    </div>
+    <button onclick="goTo(2)">Open it ❤️</button>
 
   </div>
 </section>
 
 
 <!-- =========================
-     2. INTRODUCTION LETTER
+     SCENE 2
 ========================= -->
 
-<section class="scene pink" id="scene2">
-  <div class="content">
+<section class="scene soft" id="scene2">
 
-    <div class="letter">
+  <div class="scene-content">
 
-      <h2>For you ❤️</h2>
+    <h2>So...</h2>
 
-      <p>
-        Hey, I made this for you.
-      </p>
+    <p>
+      I know it hasn't been 1 year yet, but I wanted to celebrate these 11 months together.
+    </p>
 
-      <p>
-        I know it hasn't been 1 year yet, but I wanted to celebrate these 11 months together.
-      </p>
+    <p>
+      These 11 months have been some of the happiest months of my life. Since you came into my life, I feel like everything changed completely.
+    </p>
 
-      <p>
-        These 11 months have been some of the happiest months of my life. Since you came into my life, I feel like everything changed completely.
-      </p>
+    <p>
+      And I wanted to write this for you...
+    </p>
 
-      <p>
-        And I wanted to write this for you...
-      </p>
-
-    </div>
-
-    <button class="next" onclick="goTo(3)">Keep going ❤️</button>
+    <button onclick="goTo(3)">Keep going ❤️</button>
 
   </div>
+
 </section>
 
 
 <!-- =========================
-     3. ROSE
+     SCENE 3 — ROSE
 ========================= -->
 
-<section class="scene rose" id="scene3">
-  <div class="content">
+<section class="scene rose-scene" id="scene3">
 
-    <div class="rose-area">
+  <div class="scene-content">
 
-      <div class="rose" id="rose">
-        <div class="rose-petal p1"></div>
-        <div class="rose-petal p2"></div>
-        <div class="rose-petal p3"></div>
-        <div class="rose-petal p4"></div>
-        <div class="rose-petal p5"></div>
-        <div class="rose-petal p6"></div>
-        <div class="rose-center"></div>
+    <div class="rose">
+      <div class="petal"></div>
+      <div class="petal"></div>
+      <div class="petal"></div>
+      <div class="petal"></div>
+      <div class="petal"></div>
+      <div class="petal"></div>
+      <div class="rose-center"></div>
+      <div class="stem"></div>
+      <div class="leaf"></div>
+    </div>
+
+    <h2>There's something I want to say.</h2>
+
+    <button onclick="goTo(4)">Open the letter</button>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     SCENE 4 — ENVELOPE
+========================= -->
+
+<section class="scene letter-scene" id="scene4">
+
+  <div class="scene-content">
+
+    <div class="envelope" id="envelope" onclick="openEnvelope()">
+
+      <div class="envelope-back"></div>
+
+      <div class="letter-paper">
+        <strong>For you ❤️</strong>
+        <br><br>
+        Tap the letter to open it.
       </div>
 
+      <div class="envelope-flap"></div>
+
     </div>
 
-    <div class="rose-message" id="roseMessage">
-      <h2>There's something I want to tell you.</h2>
-      <button class="next" onclick="goTo(4)">Open this ❤️</button>
-    </div>
+    <p class="small">tap the envelope</p>
+
+    <button id="letterButton" style="display:none" onclick="goTo(5)">
+      Read it ❤️
+    </button>
 
   </div>
+
 </section>
 
 
 <!-- =========================
-     4. APOLOGY
+     SCENE 5 — APOLOGY PART 1
 ========================= -->
 
-<section class="scene pink" id="scene4">
-  <div class="content">
+<section class="scene soft" id="scene5">
 
-    <div class="letter">
+  <div class="scene-content">
 
-      <h2>I love you.</h2>
+    <div class="text-card">
+
+      <h2>Something I need to say</h2>
 
       <p>
         I love you. I love you more than you can think.
@@ -641,6 +712,25 @@ button {
         I can't forgive myself for making you go through those things, and I really want to ask you to forgive me for making you stress over things you shouldn't have had to.
       </p>
 
+    </div>
+
+    <button onclick="goTo(6)">Keep reading</button>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     SCENE 6 — APOLOGY PART 2
+========================= -->
+
+<section class="scene soft" id="scene6">
+
+  <div class="scene-content">
+
+    <div class="text-card">
+
       <p>
         I want you to know that I have always loved you. Sometimes I'm just scared of losing you, and that fear makes me do stupid things that I don't actually want to do.
       </p>
@@ -649,50 +739,59 @@ button {
         Sometimes I try to find ways to make sure you still love me, even though I already know how much you love me.
       </p>
 
+      <p>
+        I just want you to be you.
+      </p>
+
+      <p>
+        I love who you were, who you are now, and whoever you're going to become. I love every version of you, no matter what happens.
+      </p>
+
+      <p>
+        I'm trying to change myself so I don't hurt you anymore.
+      </p>
+
     </div>
 
-    <button class="next" onclick="goTo(5)">There's something else ❤️</button>
+    <button onclick="goTo(7)">There's more ❤️</button>
 
   </div>
+
 </section>
 
 
 <!-- =========================
-     5. BE YOU
+     SCENE 7 — BE YOU
 ========================= -->
 
-<section class="scene quote-scene dark" id="scene5">
-  <div class="content">
+<section class="scene quote-scene" id="scene7">
 
-    <div class="quote-heart">❤️</div>
+  <div class="scene-content">
 
-    <div class="big-quote">
-      I just want you to be you.
-    </div>
+    <span class="big-heart">❤️</span>
 
-    <p class="quote-sub">
+    <h2>I just want you to be you.</h2>
+
+    <p>
       I love who you were, who you are now, and whoever you're going to become.
-      I love every version of you, no matter what happens.
     </p>
 
-    <p class="quote-sub">
-      I'm trying to change myself so I don't hurt you anymore.
-    </p>
-
-    <button class="next" onclick="goTo(6)">Keep going ❤️</button>
+    <button onclick="goTo(8)">Continue</button>
 
   </div>
+
 </section>
 
 
 <!-- =========================
-     6. APOLOGY CONTINUED
+     SCENE 8 — DIARY
 ========================= -->
 
-<section class="scene pink" id="scene6">
-  <div class="content">
+<section class="scene soft" id="scene8">
 
-    <div class="letter">
+  <div class="scene-content">
+
+    <div class="text-card">
 
       <p>
         I also want you to know that you can tell me things. I want to be your diary, someone you can count on when you feel like you don't have anyone.
@@ -708,30 +807,49 @@ button {
 
     </div>
 
-    <button class="next" onclick="goTo(7)">One more thing ❤️</button>
+    <button onclick="goTo(9)">One more thing</button>
 
   </div>
+
 </section>
 
 
 <!-- =========================
-     7. MEANING / FUTURE
+     SCENE 9 — MEANING
 ========================= -->
 
-<section class="scene future" id="scene7">
-  <div class="content">
+<section class="scene future-scene" id="scene9">
 
-    <div class="future-card">
+  <div class="scene-content">
 
-      <h2>You don't imagine how much you mean to me.</h2>
+    <span class="big-heart">❤️</span>
 
-      <p>
-        The love I feel for you isn't like anything else. It's a kind of love that even I can't really explain.
-      </p>
+    <h2>You don't imagine how much you mean to me.</h2>
 
-      <p>
-        Every day I think about you. I wonder if you're okay, if you're thinking about me, and if I'm going to have you in my future, which is something I really want.
-      </p>
+    <p>
+      The love I feel for you isn't like anything else. It's a kind of love that even I can't really explain.
+    </p>
+
+    <p>
+      Every day I think about you. I wonder if you're okay, if you're thinking about me, and if I'm going to have you in my future, which is something I really want.
+    </p>
+
+    <button onclick="goTo(10)">Keep going</button>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     SCENE 10 — FUTURE
+========================= -->
+
+<section class="scene future-scene" id="scene10">
+
+  <div class="scene-content">
+
+    <div class="text-card">
 
       <p>
         If I had one wish right now, it would be to be with you forever.
@@ -748,6 +866,25 @@ button {
       <p>
         I know sometimes everything can feel overwhelming — school, your mom wanting you to marry someone with a residency, thinking about the future, and everything else.
       </p>
+
+    </div>
+
+    <button onclick="goTo(11)">Keep going ❤️</button>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     SCENE 11 — FUTURE PART 2
+========================= -->
+
+<section class="scene future-scene" id="scene11">
+
+  <div class="scene-content">
+
+    <div class="text-card">
 
       <p>
         But I want you to slow down a little and let me be there with you through it.
@@ -767,35 +904,38 @@ button {
 
     </div>
 
-    <button class="next" onclick="goTo(8)">Our memories ❤️</button>
+    <button onclick="goTo(12)">Our memories</button>
 
   </div>
+
 </section>
 
 
 <!-- =========================
-     8. MEMORY CARDS
+     SCENE 12 — MEMORIES
 ========================= -->
 
-<section class="scene memories" id="scene8">
-  <div class="content">
+<section class="scene memory-scene" id="scene12">
+
+  <div class="scene-content">
 
     <h2>This I will never forget ❤️</h2>
 
-    <div class="memory-grid">
+    <p class="small">
+      Tap each one.
+    </p>
+
+    <div class="memories">
 
       <div class="memory-card" onclick="toggleMemory(this)">
         <div class="memory-inner">
 
           <div class="memory-front">
-            <div class="emoji">💋</div>
-            <h3>Our first quiz</h3>
+            Our first quiz
           </div>
 
           <div class="memory-back">
-            <p>
-              The way you hugged me and kissed me...
-            </p>
+            The way you hugged me and kissed me...
           </div>
 
         </div>
@@ -806,14 +946,11 @@ button {
         <div class="memory-inner">
 
           <div class="memory-front">
-            <div class="emoji">🚌</div>
-            <h3>The bus</h3>
+            The bus
           </div>
 
           <div class="memory-back">
-            <p>
-              The time we sat by each other on the bus, not knowing what to say to each other.
-            </p>
+            The time we sat by each other on the bus, not knowing what to say to each other.
           </div>
 
         </div>
@@ -824,14 +961,11 @@ button {
         <div class="memory-inner">
 
           <div class="memory-front">
-            <div class="emoji">😭</div>
-            <h3>That phone call</h3>
+            That phone call
           </div>
 
           <div class="memory-back">
-            <p>
-              The time we were on a call and you told me you were pooping, which was kinda weird 😭 but showed me how much confidence you have in me.
-            </p>
+            The time we were on a call and you told me you were pooping, which was kinda weird but showed me how much confidence you have in me.
           </div>
 
         </div>
@@ -842,14 +976,11 @@ button {
         <div class="memory-inner">
 
           <div class="memory-front">
-            <div class="emoji">❤️</div>
-            <h3>The way you care</h3>
+            The way you care
           </div>
 
           <div class="memory-back">
-            <p>
-              Always making sure I'm okay and I'm doing the right thing. For example, the times I tried to skip to stay with you but you don't let me.
-            </p>
+            Always making sure I'm okay and I'm doing the right thing. For example, the times I tried to skip to stay with you but you don't let me.
           </div>
 
         </div>
@@ -857,31 +988,35 @@ button {
 
     </div>
 
-    <button class="next" onclick="goTo(9)">There's still more ❤️</button>
+    <button onclick="goTo(13)">One last thing ❤️</button>
 
   </div>
+
 </section>
 
 
 <!-- =========================
-     9. END
+     SCENE 13 — END
 ========================= -->
 
-<section class="scene final" id="scene9">
-  <div class="content final-text">
+<section class="scene end-scene" id="scene13">
 
-    <div class="heart-wrap final-heart">
-      <div class="heart"></div>
-    </div>
+  <div class="scene-content">
 
-    <h1>11 months. ❤️</h1>
+    <div class="end-heart">❤️</div>
+
+    <h1>11 months.</h1>
 
     <p>
       Thank you for being part of my life.
     </p>
 
     <p>
-      I'm still learning. I'm still growing.
+      I'm still learning.
+    </p>
+
+    <p>
+      I'm still growing.
     </p>
 
     <p>
@@ -893,90 +1028,126 @@ button {
     </p>
 
     <p>
-      I love you.
+      Here's to whatever comes next.
     </p>
 
+    <p>
+      I love you. ❤️
+    </p>
+
+    <div class="signature">
+      — Woodson
+    </div>
+
   </div>
+
 </section>
 
 
 <script>
 
-/*
-  IMPORTANT:
-  Only ONE scene exists on screen at a time.
-*/
+/* =========================
+   SCENE NAVIGATION
+========================= */
 
 let currentScene = 1;
-let changing = false;
+let moving = false;
 
 function goTo(number) {
 
-  if (changing || number === currentScene) return;
+  if (moving || number === currentScene) return;
 
-  changing = true;
+  moving = true;
 
   const oldScene = document.getElementById("scene" + currentScene);
   const newScene = document.getElementById("scene" + number);
 
-  /*
-    Completely remove the old scene first.
-  */
+  if (!oldScene || !newScene) {
+    moving = false;
+    return;
+  }
 
   oldScene.classList.remove("active");
 
   setTimeout(() => {
 
-    /*
-      Reset any interactive elements inside the new scene.
-    */
-
     newScene.classList.add("active");
 
     currentScene = number;
-    changing = false;
 
-    /*
-      Special animation for the rose.
-    */
+    setTimeout(() => {
+      moving = false;
+    }, 550);
 
-    if (number === 3) {
-
-      const rose = document.getElementById("rose");
-      const message = document.getElementById("roseMessage");
-
-      rose.classList.remove("open");
-      message.classList.remove("show");
-
-      setTimeout(() => {
-        rose.classList.add("open");
-      }, 600);
-
-      setTimeout(() => {
-        message.classList.add("show");
-      }, 1500);
-    }
-
-  }, 450);
+  }, 180);
 }
 
 
+/* =========================
+   ENVELOPE
+========================= */
+
+function openEnvelope() {
+
+  const envelope = document.getElementById("envelope");
+  const button = document.getElementById("letterButton");
+
+  envelope.classList.add("open");
+
+  setTimeout(() => {
+    button.style.display = "inline-block";
+  }, 650);
+}
+
+
+/* =========================
+   MEMORY CARDS
+   ONLY ONE OPEN AT A TIME
+========================= */
+
 function toggleMemory(card) {
 
-  /*
-    Only one memory card opens at a time.
-  */
+  const cards = document.querySelectorAll(".memory-card");
 
-  document.querySelectorAll(".memory-card").forEach(other => {
-
+  cards.forEach(other => {
     if (other !== card) {
       other.classList.remove("open");
     }
-
   });
 
   card.classList.toggle("open");
 }
+
+
+/* =========================
+   FLOATING HEARTS
+========================= */
+
+function createFloatingHearts() {
+
+  const scenes = document.querySelectorAll(".soft, .rose-scene, .quote-scene, .future-scene, .memory-scene");
+
+  scenes.forEach(scene => {
+
+    for (let i = 0; i < 7; i++) {
+
+      const heart = document.createElement("div");
+
+      heart.className = "floating-heart";
+      heart.textContent = "♡";
+
+      heart.style.left = Math.random() * 100 + "%";
+      heart.style.animationDuration = (8 + Math.random() * 8) + "s";
+      heart.style.animationDelay = (Math.random() * 8) + "s";
+      heart.style.fontSize = (14 + Math.random() * 16) + "px";
+
+      scene.appendChild(heart);
+    }
+
+  });
+}
+
+createFloatingHearts();
 
 </script>
 
