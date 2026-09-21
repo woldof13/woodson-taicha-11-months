@@ -253,9 +253,9 @@ button:active {
 ========================= */
 
 .rose {
-  width: 150px;
-  height: 150px;
-  margin: 0 auto 30px;
+  width: 170px;
+  height: 190px;
+  margin: 0 auto 25px;
   position: relative;
   animation: roseFloat 3s ease-in-out infinite;
 }
@@ -265,79 +265,95 @@ button:active {
     transform: translateY(0);
   }
   50% {
-    transform: translateY(-10px);
+    transform: translateY(-7px);
   }
 }
 
+/* flower petals */
 .petal {
   position: absolute;
-  width: 72px;
-  height: 95px;
+  width: 68px;
+  height: 88px;
   background: linear-gradient(145deg, #e84970, #a91f49);
   border-radius: 70% 30% 70% 30%;
-  left: 39px;
-  top: 25px;
-  transform-origin: bottom center;
+  left: 51px;
+  top: 12px;
+  transform-origin: 34px 70px;
   box-shadow: 0 5px 15px rgba(130, 25, 55, 0.2);
 }
 
 .petal:nth-child(1) {
-  transform: rotate(0deg) translateY(-5px);
+  transform: rotate(0deg);
 }
 
 .petal:nth-child(2) {
-  transform: rotate(60deg) translateY(-5px);
+  transform: rotate(60deg);
 }
 
 .petal:nth-child(3) {
-  transform: rotate(120deg) translateY(-5px);
+  transform: rotate(120deg);
 }
 
 .petal:nth-child(4) {
-  transform: rotate(180deg) translateY(-5px);
+  transform: rotate(180deg);
 }
 
 .petal:nth-child(5) {
-  transform: rotate(240deg) translateY(-5px);
+  transform: rotate(240deg);
 }
 
 .petal:nth-child(6) {
-  transform: rotate(300deg) translateY(-5px);
+  transform: rotate(300deg);
 }
 
+/* center of flower */
 .rose-center {
   position: absolute;
   width: 55px;
   height: 55px;
   background: #b5234b;
   border-radius: 50%;
-  left: 48px;
-  top: 48px;
-  box-shadow: inset 0 0 12px rgba(80,0,20,0.25);
-  z-index: 4;
+  left: 57px;
+  top: 43px;
+  z-index: 5;
+  box-shadow:
+    inset 0 0 12px rgba(80,0,20,0.25),
+    0 3px 8px rgba(100,20,40,0.2);
 }
 
+/* stem */
 .stem {
   position: absolute;
   width: 8px;
-  height: 90px;
+  height: 95px;
   background: #3f8b55;
-  left: 72px;
-  top: 110px;
+  left: 81px;
+  top: 91px;
   border-radius: 20px;
+  z-index: 1;
 }
 
+/* leaves now sit directly around the stem */
 .leaf {
   position: absolute;
-  width: 45px;
-  height: 22px;
+  width: 48px;
+  height: 24px;
   background: #4e9c61;
   border-radius: 100% 0;
-  left: 30px;
-  top: 145px;
+  z-index: 2;
+}
+
+.leaf:first-of-type {
+  left: 37px;
+  top: 120px;
   transform: rotate(-25deg);
 }
 
+.leaf:last-of-type {
+  left: 82px;
+  top: 138px;
+  transform: rotate(155deg);
+}
 /* =========================
    LETTER
 ========================= */
@@ -357,19 +373,7 @@ button:active {
   background: #f7b6c9;
   border-radius: 12px;
   box-shadow: 0 20px 50px rgba(80, 30, 50, 0.18);
-}
-
-.envelope-flap {
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 150px;
-  background: #ec8fac;
-  clip-path: polygon(0 0, 100% 0, 50% 100%);
-  transform-origin: top;
-  transition: transform 0.8s ease;
-  z-index: 4;
+  z-index: 1;
 }
 
 .letter-paper {
@@ -381,19 +385,26 @@ button:active {
   background: #fffaf5;
   border-radius: 8px;
   padding: 25px;
-  z-index: 2;
-  transition: transform 0.8s ease;
+  z-index: 3;
   box-shadow: 0 5px 20px rgba(60,20,30,0.12);
+}
+
+.envelope-flap {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 150px;
+  background: #ec8fac;
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+  transform-origin: top center;
+  transition: transform 0.8s ease;
+  z-index: 4;
 }
 
 .envelope.open .envelope-flap {
   transform: rotateX(180deg);
 }
-
-.envelope.open .letter-paper {
-  transform: translateY(-110px);
-}
-
 /* =========================
    TEXT CARDS
 ========================= */
@@ -636,9 +647,10 @@ button:active {
       <div class="rose-center"></div>
       <div class="stem"></div>
       <div class="leaf"></div>
+      <div class="leaf"></div>
     </div>
 
-    <h2>There's something I want to say.</h2>
+    <h2>There's something I've been wanting to tell you.</h2>
 
     <button onclick="goTo(4)">Open the letter</button>
 
